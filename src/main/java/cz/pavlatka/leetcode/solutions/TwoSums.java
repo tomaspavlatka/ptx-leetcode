@@ -1,10 +1,8 @@
 package cz.pavlatka.leetcode.solutions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TwoSums {
-
     public int[] solve(int[] nums, int target) {
         var map = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; i++) {
