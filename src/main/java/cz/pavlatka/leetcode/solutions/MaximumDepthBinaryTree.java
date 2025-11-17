@@ -1,43 +1,64 @@
 package cz.pavlatka.leetcode.solutions;
 
-import java.util.Stack;
+import java.util.LinkedList;
 
 // @see https://leetcode.com/problems/maximum-depth-of-binary-tree/
 public class MaximumDepthBinaryTree {
-    public int solve(TreeNode root) {
+    private int maxDepth;
+
+    public int dfs(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
-        var stack = new Stack<NodeDepth>();
-        stack.push(new NodeDepth(root, 1));
+        calculateMaxDepth(root, 1);
 
-        var maxDepth = 0;
-        while (!stack.isEmpty()) {
-            var nodeDepth = stack.pop();
-            var node = nodeDepth.node;
-            var depth = nodeDepth.depth;
+        return maxDepth;
+    }
 
-            maxDepth = Math.max(maxDepth, depth);
-            if (node.left != null) {
-                stack.push(new NodeDepth(node.left, depth + 1));
+    private void calculateMaxDepth(TreeNode node, int depth) {
+        if (node == null) {
+            return;
+        }
+
+        maxDepth = Math.max(maxDepth, depth);
+
+        calculateMaxDepth(node.left, depth + 1);
+        calculateMaxDepth(node.right, depth + 1);
+    }
+
+    public int bfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        var queue = new LinkedList<NodeDepth>();
+        queue.offer(new NodeDepth(root, 1));
+
+        int maxDepth = 0;
+        while (!queue.isEmpty()) {
+            var nodeDepth = queue.poll();
+
+            maxDepth = Math.max(maxDepth, nodeDepth.depth);
+
+            if (nodeDepth.node.left != null) {
+                queue.offer(new NodeDepth(nodeDepth.node.left, nodeDepth.depth + 1));
             }
 
-            if (node.right != null) {
-                stack.push(new NodeDepth(node.right, depth + 1));
+            if (nodeDepth.node.right != null) {
+                queue.offer(new NodeDepth(nodeDepth.node.right, nodeDepth.depth + 1));
             }
         }
 
         return maxDepth;
     }
 
-    public static class NodeDepth {
+    static class NodeDepth {
         int depth;
         TreeNode node;
-
         NodeDepth(TreeNode node, int depth) {
-            this.node = node;
             this.depth = depth;
+            this.node = node;
         }
     }
 
