@@ -26,7 +26,7 @@ public class ContainerWithMostWater {
         var right = height.length - 1;
         while (left < right) { // O(n)
             max = Math.max(max, (right - left) * Math.min(height[left], height[right])); // O(1)
-            if (height[left] < height[right]) {
+            if (height[left] < height[right]) { // We want to find the container with most water, therefore he keep the higher number
                 left++;
             } else {
                 right--;
