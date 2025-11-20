@@ -41,6 +41,6 @@ class CombinationSumTest {
     void test3() {
         var result = solver.combinationSum(new int[]{2}, 1);
 
-        assertThat(result).isEmpty();;
+        assertThat(result).isEmpty();
     }
 }

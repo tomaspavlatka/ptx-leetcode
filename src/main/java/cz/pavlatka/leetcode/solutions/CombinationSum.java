@@ -5,7 +5,7 @@ import java.util.List;
 
 // @see https://leetcode.com/problems/combination-sum/description/
 public class CombinationSum {
-    private List<List<Integer>> result = new ArrayList<>();
+    private final List<List<Integer>> result = new ArrayList<>();
     // Time:
     // Space:
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
@@ -25,7 +25,7 @@ public class CombinationSum {
 
         path.add(candidates[start]);
         backtrack(start, path, total + candidates[start], target, candidates);
-        path.remove(path.size() - 1);
+        path.removeLast();
 
         backtrack(start + 1, path, total, target, candidates);
     }
