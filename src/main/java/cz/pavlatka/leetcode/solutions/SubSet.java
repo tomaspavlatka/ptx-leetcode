@@ -5,6 +5,8 @@ import java.util.List;
 
 // @see https://leetcode.com/problems/subsets/description/
 public class SubSet {
+    // Time: O(n)
+    // Space: O(n)
     public List<List<Integer>> subsets(int[] nums) {
         if (nums == null || nums.length == 0)  {
             return List.of();
