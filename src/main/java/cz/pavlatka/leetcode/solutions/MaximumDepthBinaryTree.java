@@ -1,5 +1,8 @@
 package cz.pavlatka.leetcode.solutions;
 
+import cz.pavlatka.leetcode.shared.TreeNode;
+import cz.pavlatka.leetcode.shared.TreeNodeDepth;
+
 import java.util.LinkedList;
 
 // @see https://leetcode.com/problems/maximum-depth-of-binary-tree/
@@ -32,8 +35,8 @@ public class MaximumDepthBinaryTree {
             return 0;
         }
 
-        var queue = new LinkedList<NodeDepth>();
-        queue.offer(new NodeDepth(root, 1));
+        var queue = new LinkedList<TreeNodeDepth>();
+        queue.offer(new TreeNodeDepth(root, 1));
 
         int maxDepth = 0;
         while (!queue.isEmpty()) {
@@ -42,35 +45,14 @@ public class MaximumDepthBinaryTree {
             maxDepth = Math.max(maxDepth, nodeDepth.depth);
 
             if (nodeDepth.node.left != null) {
-                queue.offer(new NodeDepth(nodeDepth.node.left, nodeDepth.depth + 1));
+                queue.offer(new TreeNodeDepth(nodeDepth.node.left, nodeDepth.depth + 1));
             }
 
             if (nodeDepth.node.right != null) {
-                queue.offer(new NodeDepth(nodeDepth.node.right, nodeDepth.depth + 1));
+                queue.offer(new TreeNodeDepth(nodeDepth.node.right, nodeDepth.depth + 1));
             }
         }
 
         return maxDepth;
-    }
-
-    static class NodeDepth {
-        int depth;
-        TreeNode node;
-        NodeDepth(TreeNode node, int depth) {
-            this.depth = depth;
-            this.node = node;
-        }
-    }
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }

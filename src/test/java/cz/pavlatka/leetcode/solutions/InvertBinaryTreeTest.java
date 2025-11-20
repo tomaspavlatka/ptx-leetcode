@@ -1,9 +1,9 @@
 package cz.pavlatka.leetcode.solutions;
 
+import cz.pavlatka.leetcode.shared.TreeNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static cz.pavlatka.leetcode.solutions.InvertBinaryTree.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InvertBinaryTreeTest {
