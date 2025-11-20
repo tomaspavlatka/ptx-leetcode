@@ -9,7 +9,7 @@ public class CombinationSum {
     // Time:
     // Space:
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        backtrack(0, new ArrayList<>(), 0, target, candidates);
+        backtrack(0, new ArrayList<>(), 0, target, candidates); // O(1)
         return result;
     }
 
